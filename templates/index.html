@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Polling Units{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+        <section class="hero is-link">
+            <div class="hero-body">
+              <p style="text-align: center;" class="title text-center">
+                Polling Units
+                
+                <div class="buttons">
+                  <a href="{% url 'pollapp:ward_result' %}" class="button is-info">View polling unit result</a>
+                </div>
+                <div class="buttons">
+                  <a href="{% url 'pollapp:poll_result' %}" class="button is-info">View all polling unit result</a>
+                </div>
+              </p>
+
+              <table style="margin: auto;" class="table">
+                <th>POLLING UNIT ID</th>
+                <th>WARD ID</th>
+                <th>POLLING UNIT NO</th>
+                <th>POLLING UNIT NAME</th>
+                {% for polling_unit in  polling_units  %}
+                {% if polling_unit.polling_unit_id > 0 %}
+                  <tr>
+                    <td>{{polling_unit.polling_unit_id}}</td>
+                    <td>{{polling_unit.ward_id}}</td>
+                    <td>{{polling_unit.polling_unit_number}}</td>
+                    <td>{{polling_unit.polling_unit_name}}</td>
+                  </tr>
+                 
+                  {% endif %}
+              {% endfor %}
+              </table>
+            </div>
+          </section>
+    </div>
+  </section>
+  </body>
+</html>

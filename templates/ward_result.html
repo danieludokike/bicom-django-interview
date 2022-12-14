@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Polling Units Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+        <section class="hero is-link">
+            <div class="hero-body">
+              <p style="text-align: center;" class="title text-center">
+                View Results
+                <div class="buttons">
+                    <a href="{% url 'pollapp:index' %}" class="button is-info">Return Home</a>
+                  </div>
+                  <br><br>
+                <div class="select">
+                    <form style="margin-top: -20px" action="{% url 'pollapp:ward_result' %}" method="POST">
+                        {% csrf_token %}
+                    <select name="lga">
+                        {% for lga in localgovernments %}
+                      <option name="{{lga}}" value="{{lga}}" selected>{{lga}}</option>
+                      {% endfor %}
+                    </select>
+                    <br>
+                    <div class="buttons">
+                        <input type="submit" value="View Polling Unit Results" class="button is-info" />
+                      </div>
+                </form>
+                  </div>
+
+                  <table style="margin: auto;" class="table">
+                    <th>PARTY</th>
+                    <th>SCORE</th>
+                    <th>DATE</th>
+                    {% for result in  results  %}
+                      <tr>
+                        <td>{{result.party_abbreviation}}</td>
+                        <td>{{result.party_score}}</td>
+                        <td>{{result.date_entered}}</td>
+                      </tr>
+                     
+                  {% endfor %}
+                  </table>
+            </div>
+          </section>
+    </div>
+  </section>
+  </body>
+</html>
+

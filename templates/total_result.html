@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Polling Units Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+        <section class="hero is-link">
+            <div class="hero-body">
+              <p style="text-align: center;" class="title text-center">
+                All Party Result
+
+                <div class="buttons">
+                    <a href="{% url 'pollapp:index' %}" class="button is-info">Return Home</a>
+                  </div>
+
+                  <table style="margin: auto;" class="table">
+                    <th>PARTY</th>
+                    <th>SCORE</th>
+                    <th>DATE</th>
+                    {% for val in  result  %}
+                      <tr>
+                        <td>{{val.party_abbreviation}}</td>
+                        <td>{{val.party_score}}</td>
+                        <td>{{val.date_entered}}</td>
+                      </tr>
+                     
+                  {% endfor %}
+                  </table>
+            </div>
+          </section>
+    </div>
+  </section>
+  </body>
+</html>
+
